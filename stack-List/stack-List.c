@@ -73,6 +73,18 @@ int peek(struct stack *sp, int i)
     }
 }
 
+int stackTop(struct stack *ptr)
+{
+    if (isEmpty(ptr))
+    {
+        return 00000;
+    }
+    else
+    {
+        return ptr->arr[ptr->top];
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     /*   struct stack s;
@@ -108,6 +120,9 @@ int main(int argc, char const *argv[])
     printf("\nthe element at number 1 position is : %d\n", peek(s, 1));
     printf("\nthe element at number 2 position is : %d\n", peek(s, 2));
     printf("\nthe element at number 3 position is : %d\n", peek(s, 3));
+
+    printf("\nstacktop running..\n");
+    printf("topmost element in the stack is -> %d \n", stackTop(s));
 
     return 0;
 }
