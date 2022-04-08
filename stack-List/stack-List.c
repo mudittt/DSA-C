@@ -45,6 +45,21 @@ void push(struct stack *ptr, int data)
     }
 }
 
+int pop(struct stack *ptr)
+{
+    if (isEmpty(ptr))
+    {
+        printf("stack underflow.");
+        return -1;
+    }
+    else
+    {
+        int val = (ptr->arr[ptr->top]);
+        ptr->top--;
+        return val;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     /*   struct stack s;
@@ -72,6 +87,18 @@ int main(int argc, char const *argv[])
     }
 
     push(s, 55);
+
+    printf("\nchecking if stack is empty or not...\n");
+    if ((isEmpty(s)) == 1)
+    {
+        printf("The stack is empty . ");
+    }
+    else
+    {
+        printf("The stack is not empty . ");
+    }
+
+    pop(s);
 
     printf("\nchecking if stack is empty or not...\n");
     if ((isEmpty(s)) == 1)
