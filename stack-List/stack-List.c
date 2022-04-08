@@ -106,6 +106,8 @@ int main(int argc, char const *argv[])
     push(s, 42);
     push(s, 4324);
     printf("\nthe element at number 1 position is : %d\n", peek(s, 1));
+    printf("\nthe element at number 2 position is : %d\n", peek(s, 2));
+    printf("\nthe element at number 3 position is : %d\n", peek(s, 3));
 
     return 0;
 }
