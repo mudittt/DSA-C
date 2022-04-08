@@ -76,41 +76,18 @@ int main(int argc, char const *argv[])
     s->arr[0] = 7;
     s->top++;    */
 
-    printf("\nchecking if stack is empty or not...\n");
-    if ((isEmpty(s)) == 1)
-    {
-        printf("The stack is empty . ");
-    }
-    else
-    {
-        printf("The stack is not empty . ");
-    }
+    printf("Full -> %d\n", isFull(s));
+    printf("Empty -> %d\n", isEmpty(s));
 
     push(s, 55);
 
-    printf("\nchecking if stack is empty or not...\n");
-    if ((isEmpty(s)) == 1)
-    {
-        printf("The stack is empty . ");
-    }
-    else
-    {
-        printf("The stack is not empty . ");
-    }
+    printf("After pushing, Full -> %d\n", isFull(s));
+    printf("After pushing, Empty -> %d\n", isEmpty(s));
 
     pop(s);
 
-    printf("\nchecking if stack is empty or not...\n");
-    if ((isEmpty(s)) == 1)
-    {
-        printf("The stack is empty . ");
-    }
-    else
-    {
-        printf("The stack is not empty . ");
-    }
-
-    free(s);
+    printf("After popping, Full -> %d\n", isFull(s));
+    printf("After popping, Empty -> %d\n", isEmpty(s));
 
     return 0;
 }
