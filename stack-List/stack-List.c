@@ -60,6 +60,19 @@ int pop(struct stack *ptr)
     }
 }
 
+int peek(struct stack *sp, int i)
+{
+    if (sp->top - i + 1 < 0)
+    {
+        printf("\ninvalid!\n");
+        return -1;
+    }
+    else
+    {
+        return sp->arr[sp->top - i + 1];
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     /*   struct stack s;
@@ -88,6 +101,11 @@ int main(int argc, char const *argv[])
 
     printf("After popping, Full -> %d\n", isFull(s));
     printf("After popping, Empty -> %d\n", isEmpty(s));
+
+    push(s, 55);
+    push(s, 42);
+    push(s, 4324);
+    printf("\nthe element at number 1 position is : %d\n", peek(s, 1));
 
     return 0;
 }
