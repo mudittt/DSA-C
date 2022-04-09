@@ -50,6 +50,25 @@ int pop(struct stack *ptr)
 
 int parenthesisCheck(struct stack *s, char str[])
 {
+    for (int i = 0; i < 10; i++)
+    {
+        if (str[i] == '(')
+        {
+            push(s, 9);
+        }
+        else if (str[i] == ')')
+        {
+            pop(s);
+        }
+    }
+    if (isEmpty(s))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int main()
