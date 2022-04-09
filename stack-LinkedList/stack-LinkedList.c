@@ -102,6 +102,24 @@ int stackTop(struct stack *sp)
     }
 }
 
+int stackBottom(struct stack *sp)
+{
+    struct stack *temp = sp;
+    if (isEmpty(temp))
+    {
+        return 696969;
+    }
+    else
+    {
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+
+        return temp->data;
+    }
+}
+
 int main()
 {
     struct stack *top = NULL;
@@ -119,6 +137,8 @@ int main()
     printf("\nElement @ position 1 is -> %d \n", peek(top, 1));
     top = push(top, 364);
     printf("\nTopMost element of stack is -> %d \n", stackTop(top));
+    linkedListTraversal(top);
+    printf("\nBottomMost element of stack is -> %d \n", stackBottom(top));
 
     free(top);
     return 0;
