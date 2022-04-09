@@ -90,7 +90,7 @@ int main()
     struct stack *s;
     s->size = 10;
     s->top = -1;
-    s->arr = (int *)malloc(s->size * (sizeof(char)));
+    s->arr = (char *)malloc(s->size * (sizeof(char)));
     printf("Enter an equation (less than less characters -> ");
     scanf("%s", &str);
 
