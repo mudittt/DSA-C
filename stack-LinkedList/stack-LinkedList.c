@@ -31,6 +31,22 @@ int isEmpty(struct stack *top)
     }
 }
 
+struct stack *push(struct stack *top, int x)
+{
+    if (isFull(top))
+    {
+        printf("\nstack overflow!\n");
+    }
+    else
+    {
+        struct stack *p = (struct stack *)malloc(sizeof(struct stack));
+        p->data = x;
+        p->next = top;
+        top = p;
+        return top;
+    }
+}
+
 int main()
 {
     struct stack *top = NULL;
