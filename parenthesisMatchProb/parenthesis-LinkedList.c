@@ -87,8 +87,6 @@ int parenthesisChecker(struct stack *top, char str[10])
         }
     }
 
-    linkedListTraversal(top);
-
     if (isEmpty(top))
     {
         return 1;
@@ -103,10 +101,10 @@ int main()
 {
     struct stack *top = NULL;
     char str[10];
-    printf("Enter an equation (less than less characters -> ");
+    printf("Enter an equation (less than less characters) -> ");
     scanf("%s", &str);
 
-    int TrueOrFalse = parenthesisCheck(top, str);
+    int TrueOrFalse = parenthesisChecker(top, str);
     if (TrueOrFalse == 1)
     {
         printf("\nValid parenthesis.");
