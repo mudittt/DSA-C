@@ -91,7 +91,7 @@ int main()
     s->size = 10;
     s->top = -1;
     s->arr = (char *)malloc(s->size * (sizeof(char)));
-    printf("Enter an equation (less than less characters -> ");
+    printf("Enter an equation (less than less characters) -> ");
     scanf("%s", &str);
 
     int TrueOrFalse = parenthesisCheck(s, str);
