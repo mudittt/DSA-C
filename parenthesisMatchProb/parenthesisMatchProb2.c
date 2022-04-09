@@ -7,6 +7,15 @@ struct stack
     struct stack *next;
 };
 
+void linkedListTraversal(struct stack *ptr)
+{
+    while (ptr != NULL)
+    {
+        printf("\n%d ", ptr->data);
+        ptr = ptr->next;
+    }
+}
+
 int isFull(struct stack *top)
 {
     struct stack *p = (struct stack *)malloc(sizeof(struct stack));
@@ -64,8 +73,47 @@ int pop(struct stack **n)
     }
 }
 
+int parenthesisChecker(struct stack *top, char str[10])
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (str[i] == '(')
+        {
+            top = push(top, 9);
+        }
+        else if (str[i] == ')')
+        {
+            pop(&top);
+        }
+    }
+
+    linkedListTraversal(top);
+
+    if (isEmpty(top))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main()
 {
     struct stack *top = NULL;
+    char str[10];
+    printf("Enter an equation (less than less characters -> ");
+    scanf("%s", &str);
+
+    int TrueOrFalse = parenthesisCheck(top, str);
+    if (TrueOrFalse == 1)
+    {
+        printf("\nValid parenthesis.");
+    }
+    else
+    {
+        printf("\nNot A Valid parenthesis.");
+    }
     return 0;
 }
