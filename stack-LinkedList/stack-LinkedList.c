@@ -7,6 +7,15 @@ struct stack
     struct stack *next;
 };
 
+void linkedListTraversal(struct stack *ptr)
+{
+    while (ptr != NULL)
+    {
+        printf("%d ", ptr->data);
+        ptr = ptr->next;
+    }
+}
+
 int isFull(struct stack *top)
 {
     struct stack *p = (struct stack *)malloc(sizeof(struct stack));
