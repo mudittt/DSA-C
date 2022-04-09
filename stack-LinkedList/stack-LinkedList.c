@@ -11,7 +11,7 @@ void linkedListTraversal(struct stack *ptr)
 {
     while (ptr != NULL)
     {
-        printf("%d ", ptr->data);
+        printf("\n%d ", ptr->data);
         ptr = ptr->next;
     }
 }
@@ -56,9 +56,35 @@ struct stack *push(struct stack *top, int x)
     }
 }
 
+int pop(struct stack **n)
+{
+    if (isEmpty(*n))
+    {
+        printf("\nstack underflow!\n");
+        return 1111111;
+    }
+    else
+    {
+        struct stack *p = *n;
+        (*n) = (*n)->next;
+        int x = p->data;
+        free(*n);
+        return x;
+    }
+}
+
 int main()
 {
     struct stack *top = NULL;
     top = push(top, 325);
+    linkedListTraversal(top);
+    printf("\nremoved the element : %d", pop(&top));
+
+    linkedListTraversal(top);
+
+    printf("\nempty -> %d", isEmpty(top));
+    printf("\nfull -> %d", isFull(top));
+
+    free(top);
     return 0;
 }
