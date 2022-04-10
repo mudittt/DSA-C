@@ -9,9 +9,28 @@ struct queue
     int *arr;
 };
 
+int isEmpty(struct queue *q)
+{
+    if (q->f == q->b)
+    {
+        return 1;
+    }
+    return 0;
+}
+
 void enqueue(struct queue *q, int data)
 {
 }
+
+int isFull(struct queue *q)
+{
+    if (q->b == (q->size - 1))
+    {
+        return 1;
+    }
+    return 0;
+}
+
 void dequeue(struct queue *q)
 {
 }
