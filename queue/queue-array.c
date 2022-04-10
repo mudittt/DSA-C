@@ -18,6 +18,15 @@ int isEmpty(struct queue *q)
     return 0;
 }
 
+int isFull(struct queue *q)
+{
+    if (q->b == (q->size - 1))
+    {
+        return 1;
+    }
+    return 0;
+}
+
 void enqueue(struct queue *q, int data)
 {
     if (isFull(q))
@@ -31,15 +40,6 @@ void enqueue(struct queue *q, int data)
     }
 }
 
-int isFull(struct queue *q)
-{
-    if (q->b == (q->size - 1))
-    {
-        return 1;
-    }
-    return 0;
-}
-
 void dequeue(struct queue *q)
 {
     if (isEmpty(q))
@@ -49,7 +49,6 @@ void dequeue(struct queue *q)
     else
     {
         q->f++;
-        q->arr[q->f] = NULL;
     }
 }
 
@@ -61,7 +60,7 @@ void queueTraversal(struct queue *q)
     }
     else
     {
-        for (int i = ((q->f) + 1); i <= q->b; i++)
+        for (int i = ((q->f) + 1); i <= (q->b); i++)
         {
             printf("-> %d\n", q->arr[i]);
         }
@@ -70,10 +69,15 @@ void queueTraversal(struct queue *q)
 
 int main(int argc, char const *argv[])
 {
+    printf("HI\n");
     struct queue *q;
     q->size = 10;
     q->f = q->b = -1;
     q->arr = (int *)malloc((q->size) * (sizeof(int)));
+
+    enqueue(q, 56);
+    dequeue(q);
+    queueTraversal(q);
 
     return 0;
 }
