@@ -8,6 +8,31 @@ struct InfixToPostfix
     int top;
     char *arr;
 };
+
+int isEmpty(struct InfixToPostfix *ptr)
+{
+    if (ptr->top == (-1))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int isFull(struct InfixToPostfix *ptr)
+{
+    if (ptr->top == (ptr->size - 1))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     char infix[10], postfix[10];
