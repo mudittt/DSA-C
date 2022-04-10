@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int i = 0, j = 0;
+
 struct InfixToPostfix
 {
     int size;
@@ -83,18 +85,21 @@ int precedence(char a)
     {
         return 2;
     }
+    return 0;
 }
 
 int main(int argc, char const *argv[])
 {
     char infix[10], postfix[10];
     struct InfixToPostfix *sp;
-    int i = 0, j = 0;
+    printf("\nHi.\n");
     sp->size = 10;
     sp->top = -1;
     sp->arr = (char *)malloc(sizeof(char) * (sp->size));
     printf("\nEnter an inFix expression-> ");
     scanf("%s", &infix);
+
+    printf("\nThe entered infix expression is -> %s", infix);
 
     while (infix[i] != '\0')
     {
@@ -119,6 +124,13 @@ int main(int argc, char const *argv[])
             }
         }
     }
+    while (!isEmpty(sp))
+    {
+        postfix[j] = pop(sp);
+        j++;
+    }
+    postfix[j] = '\0';
 
+    printf("\nThe converted postfix expression is -> %s", postfix);
     return 0;
 }
