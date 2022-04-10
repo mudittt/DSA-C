@@ -35,7 +35,7 @@ int isFull(struct InfixToPostfix *ptr)
     }
 }
 
-void push(struct InfixToPostfix *ptr, int data)
+void push(struct InfixToPostfix *ptr, char data)
 {
     if (isFull(ptr))
     {
@@ -52,7 +52,7 @@ int pop(struct InfixToPostfix *ptr)
 {
     if (isEmpty(ptr))
     {
-        printf("stack underflow.");
+        printf("stack underflow.\n");
         return -1;
     }
     else
@@ -99,8 +99,8 @@ int main(int argc, char const *argv[])
     printf("\nEnter an inFix expression-> ");
     scanf("%s", &infix);
 
-    printf("\nThe entered infix expression is -> %s", infix);
-
+    printf("\nThe entered infix expression is -> %s\n", infix);
+    push(sp, 0);
     while (infix[i] != '\0')
     {
         if (!isOperater(infix[i]))
