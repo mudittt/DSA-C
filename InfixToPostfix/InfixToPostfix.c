@@ -33,21 +33,53 @@ int isFull(struct InfixToPostfix *ptr)
     }
 }
 
+int isOperater(char a)
+{
+    if (a == '*' || '/' || '-' || '+')
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int precedence(char a)
+{
+    if (a == '+' || '-')
+    {
+        return 1;
+    }
+    if (a == '/' || '*')
+    {
+        return 2;
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     char infix[10], postfix[10];
     struct InfixToPostfix *sp;
+    int i = 0, j = 0;
     sp->size = 10;
     sp->top = -1;
     sp->arr = (char *)malloc(sizeof(char) * (sp->size));
     printf("\nEnter an inFix expression-> ");
     scanf("%s", &infix);
 
-    // for (int i = 0; infix[i] != '\0'; i++)
-    // {
-    //     printf("\n - > %c ", infix[i]);
-    // }
-    // printf("length : %d\n", strlen(infix));
+    while (infix[i] != '\0')
+    {
+        if (!isOperater(infix[i]))
+        {
+            postfix[j] = infix[i];
+            i++;
+            j++;
+        }
+        else
+        {
+        }
+    }
 
     return 0;
 }
