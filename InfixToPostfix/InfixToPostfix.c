@@ -33,6 +33,34 @@ int isFull(struct InfixToPostfix *ptr)
     }
 }
 
+void push(struct InfixToPostfix *ptr, int data)
+{
+    if (isFull(ptr))
+    {
+        printf("stack overflow.");
+    }
+    else
+    {
+        ptr->arr[ptr->top + 1] = data;
+        ptr->top++;
+    }
+}
+
+int pop(struct InfixToPostfix *ptr)
+{
+    if (isEmpty(ptr))
+    {
+        printf("stack underflow.");
+        return -1;
+    }
+    else
+    {
+        int val = (ptr->arr[ptr->top]);
+        ptr->top--;
+        return val;
+    }
+}
+
 int isOperater(char a)
 {
     if (a == '*' || '/' || '-' || '+')
@@ -78,6 +106,17 @@ int main(int argc, char const *argv[])
         }
         else
         {
+            if (precedence(infix[i]) > precedence(sp->arr[sp->top]))
+            {
+                push(sp, infix[i]);
+                i++;
+            }
+            else
+            {
+                postfix[j] = pop(sp);
+                j++;
+                i++;
+            }
         }
     }
 
