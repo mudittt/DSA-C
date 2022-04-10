@@ -20,6 +20,15 @@ int isEmpty(struct queue *q)
 
 void enqueue(struct queue *q, int data)
 {
+    if (isFull(q))
+    {
+        printf("\nQueue is full. Wait for your turn.\n");
+    }
+    else
+    {
+        q->b++;
+        q->arr[q->b] = data;
+    }
 }
 
 int isFull(struct queue *q)
@@ -33,6 +42,30 @@ int isFull(struct queue *q)
 
 void dequeue(struct queue *q)
 {
+    if (isEmpty(q))
+    {
+        printf("\nQueue is already empty.\n");
+    }
+    else
+    {
+        q->f++;
+        q->arr[q->f] = NULL;
+    }
+}
+
+void queueTraversal(struct queue *q)
+{
+    if (isEmpty(q))
+    {
+        printf("\nQueue is empty.\n");
+    }
+    else
+    {
+        for (int i = ((q->f) + 1); i <= q->b; i++)
+        {
+            printf("-> %d\n", q->arr[i]);
+        }
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -41,5 +74,6 @@ int main(int argc, char const *argv[])
     q->size = 10;
     q->f = q->b = -1;
     q->arr = (int *)malloc((q->size) * (sizeof(int)));
+
     return 0;
 }
