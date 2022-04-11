@@ -9,6 +9,24 @@ struct circularQueue
     int *arr;
 };
 
+int isFull(struct circularQueue *q)
+{
+    if ((q->b + 1) % (q->size) == (q->f))
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int isEmpty(struct circularQueue *q)
+{
+    if (q->f == q->b)
+    {
+        return 1;
+    }
+    return 0;
+}
+
 int main(int argc, char const *argv[])
 {
     printf("\nHi.\n");
