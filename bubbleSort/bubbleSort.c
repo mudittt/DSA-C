@@ -1,20 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 
-void BubbleSort(int *str[6])
+void BubbleSort(int *str)
 {
-    for (int i = 0; i < 5; i++)
+    int i, j;
+    j = 0;
+    while (j != 5)
     {
-        if (*str[i] == *str[i + 1])
+        i = 0;
+        while (i < (5 - j))
         {
+            if (str[i] > str[i + 1])
+            {
+                int temp = str[i + 1];
+                str[i + 1] = str[i];
+                str[i] = temp;
+            }
             i++;
         }
-        else
-        {
-            int temp = (*str[i + 1]);
-            (*str[i + 1]) = (*str[i]);
-            (*str[i]) = temp;
-        }
+        j++;
     }
 }
 
