@@ -65,7 +65,7 @@ int pop(struct InfixToPostfix *ptr)
 
 int isOperater(char a)
 {
-    if (a == '*' || '/' || '-' || '+')
+    if (a == '*' || a == '/' || a == '-' || a == '+')
     {
         return 1;
     }
@@ -77,15 +77,18 @@ int isOperater(char a)
 
 int precedence(char a)
 {
-    if (a == '+' || '-')
+    if (a == '+' || a == '-')
     {
         return 1;
     }
-    if (a == '/' || '*')
+    if (a == '/' || a == '*')
     {
         return 2;
     }
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -100,7 +103,7 @@ int main(int argc, char const *argv[])
     scanf("%s", &infix);
 
     printf("\nThe entered infix expression is -> %s\n", infix);
-    push(sp, 0);
+
     while (infix[i] != '\0')
     {
         if (!isOperater(infix[i]))
