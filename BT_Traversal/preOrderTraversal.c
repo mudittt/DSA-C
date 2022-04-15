@@ -18,6 +18,16 @@ struct node *createNode(int data)
     // returning the created node
 }
 
+void preOrder(struct node *root)
+{
+    if (root != NULL)
+    {
+        printf("%d ", root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
 int main(int argc, char const *argv[])
 {
     printf("hi\n");
@@ -50,7 +60,10 @@ int main(int argc, char const *argv[])
     printf("right child of left parent %d \n", plr->data);
     printf("parent left %d \n", pr->data);
     printf("right child of right parent %d \n", prr->data);
+
     */
+
+    preOrder(r);
 
     return 0;
 }
