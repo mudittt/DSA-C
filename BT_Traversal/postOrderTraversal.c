@@ -18,6 +18,16 @@ struct node *createNode(int data)
     // returning the created node
 }
 
+void postOrder(struct node *root)
+{
+    if (root != NULL)
+    {
+        postOrder(root->left);
+        postOrder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
 int main()
 {
     printf("hi\n");
@@ -40,16 +50,6 @@ int main()
     // Right parent to child
     pr->right = prr;
 
-    // /*
-    // To check if the data is assigned properly
-
-    printf("root %d \n", r->data);
-    printf("parent left %d \n", pl->data);
-    printf("left child of left parent %d \n", pll->data);
-    printf("right child of left parent %d \n", plr->data);
-    printf("parent left %d \n", pr->data);
-    printf("right child of right parent %d \n", prr->data);
-
-    // */
+    postOrder(r);
     return 0;
 }
