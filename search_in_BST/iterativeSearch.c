@@ -17,6 +17,27 @@ struct node *createNode(int data)
     return n;
     // returning the created node
 }
+
+struct node *search(struct node *root, int element)
+{
+    while (root != NULL)
+    {
+        if (root->data == element)
+        {
+            return root;
+        }
+        if (root->data > element)
+        {
+            root = root->left;
+        }
+        else
+        {
+            root = root->right;
+        }
+    }
+    return NULL;
+}
+
 int main()
 {
     printf("hi\n");
@@ -39,5 +60,14 @@ int main()
     // Right parent to child
     pr->right = prr;
 
+    struct node *found = search(r, 4);
+    if (found != NULL)
+    {
+        printf("\nFound the element - %d\n", found->data);
+    }
+    else
+    {
+        printf("\nDidn't found the element. ");
+    }
     return 0;
 }
