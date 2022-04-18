@@ -93,7 +93,7 @@ int balanceFactor(struct node *n)
        T1  T2           l            T2  T3
 */
 
-struct node *leftrotate(struct node *y)
+struct node *rightrotate(struct node *y)
 {
     struct node *x = y->left;
     struct node *T2 = x->right;
@@ -107,7 +107,7 @@ struct node *leftrotate(struct node *y)
     return x;
 }
 
-struct node *rightrotate(struct node *x)
+struct node *leftrotate(struct node *x)
 {
     struct node *y = x->right;
     struct node *T2 = y->left;
