@@ -35,6 +35,15 @@ left rotate once and then right rotate once
 #include <stdio.h>
 #include <stdlib.h>
 
+int max(int x, int y)
+{
+    if (x > y)
+    {
+        return x;
+    }
+    return y;
+}
+
 struct node
 {
     int key;
@@ -74,6 +83,42 @@ int balanceFactor(struct node *n)
         return FindHeight(n->left) - FindHeight(n->right);
     }
     return FindHeight(n->right) - FindHeight(n->left);
+}
+
+/*
+             y         r            x
+           /  \      --->         /   \
+          x   T3                 T1    y
+         / \          <---            / \
+       T1  T2           l            T2  T3
+*/
+
+struct node *leftrotate(struct node *y)
+{
+    struct node *x = y->left;
+    struct node *T2 = x->right;
+
+    x->right = y;
+    y->left = T2;
+
+    y->height = max(FindHeight(y->right), FindHeight(y->left)) + 1;
+    x->height = max(FindHeight(x->right), FindHeight(x->left)) + 1;
+
+    return x;
+}
+
+struct node *rightrotate(struct node *x)
+{
+    struct node *y = x->right;
+    struct node *T2 = y->left;
+
+    y->left = x;
+    x->right = T2;
+
+    y->height = max(FindHeight(y->right), FindHeight(y->left)) + 1;
+    x->height = max(FindHeight(x->right), FindHeight(x->left)) + 1;
+
+    return y;
 }
 
 int main()
