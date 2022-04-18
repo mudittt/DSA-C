@@ -35,94 +35,131 @@ left rotate once and then right rotate once
 #include <stdio.h>
 #include <stdlib.h>
 
-int max(int x, int y)
-{
-    if (x > y)
-    {
-        return x;
-    }
-    return y;
-}
-
-struct node
+struct Node
 {
     int key;
-    struct node *left;
-    struct node *right;
+    struct Node *left;
+    struct Node *right;
     int height;
 };
 
-int FindHeight(struct node *n)
+int getHeight(struct Node *n)
 {
     if (n == NULL)
-    {
         return 0;
-    }
     return n->height;
 }
 
-struct node *createNode(int data)
+struct Node *createNode(int key)
 {
-    printf("hi.\n");
-    struct node *haha = (struct node *)malloc(sizeof(struct node));
-    haha->key = data;
-    haha->left = NULL;
-    haha->right = NULL;
-    haha->height = 1;
-    return haha;
+    struct Node *node = (struct Node *)malloc(sizeof(struct Node));
+    node->key = key;
+    node->left = NULL;
+    node->right = NULL;
+    node->height = 1;
+    return node;
 }
 
-int balanceFactor(struct node *n)
+int max(int a, int b)
+{
+    return (a > b) ? a : b;
+}
+
+int getBalanceFactor(struct Node *n)
 {
     if (n == NULL)
     {
         return 0;
     }
-    else if (FindHeight(n->left) > FindHeight(n->right))
-    {
-        return FindHeight(n->left) - FindHeight(n->right);
-    }
-    return FindHeight(n->right) - FindHeight(n->left);
+    return getHeight(n->left) - getHeight(n->right);
 }
 
-/*
-             y         r            x
-           /  \      --->         /   \
-          x   T3                 T1    y
-         / \          <---            / \
-       T1  T2           l            T2  T3
-*/
-
-struct node *rightrotate(struct node *y)
+struct Node *rightRotate(struct Node *y)
 {
-    struct node *x = y->left;
-    struct node *T2 = x->right;
+    struct Node *x = y->left;
+    struct Node *T2 = x->right;
 
     x->right = y;
     y->left = T2;
 
-    y->height = max(FindHeight(y->right), FindHeight(y->left)) + 1;
-    x->height = max(FindHeight(x->right), FindHeight(x->left)) + 1;
+    x->height = max(getHeight(x->right), getHeight(x->left)) + 1;
+    y->height = max(getHeight(y->right), getHeight(y->left)) + 1;
 
     return x;
 }
 
-struct node *leftrotate(struct node *x)
+struct Node *leftRotate(struct Node *x)
 {
-    struct node *y = x->right;
-    struct node *T2 = y->left;
+    struct Node *y = x->right;
+    struct Node *T2 = y->left;
 
     y->left = x;
     x->right = T2;
 
-    y->height = max(FindHeight(y->right), FindHeight(y->left)) + 1;
-    x->height = max(FindHeight(x->right), FindHeight(x->left)) + 1;
+    x->height = max(getHeight(x->right), getHeight(x->left)) + 1;
+    y->height = max(getHeight(y->right), getHeight(y->left)) + 1;
 
     return y;
 }
 
+struct Node *insert(struct Node *node, int key)
+{
+    if (node == NULL)
+        return createNode(key);
+
+    if (key < node->key)
+        node->left = insert(node->left, key);
+    else if (key > node->key)
+        node->right = insert(node->right, key);
+
+    node->height = 1 + max(getHeight(node->left), getHeight(node->right));
+    int bf = getBalanceFactor(node);
+
+    // Left Left Case
+    if (bf > 1 && key < node->left->key)
+    {
+        return rightRotate(node);
+    }
+    // Right Right Case
+    if (bf < -1 && key > node->right->key)
+    {
+        return leftRotate(node);
+    }
+    // Left Right Case
+    if (bf > 1 && key > node->left->key)
+    {
+        node->left = leftRotate(node->left);
+        return rightRotate(node);
+    }
+    // Right Left Case
+    if (bf < -1 && key < node->right->key)
+    {
+        node->right = rightRotate(node->right);
+        return leftRotate(node);
+    }
+    return node;
+}
+
+void preOrder(struct Node *root)
+{
+    if (root != NULL)
+    {
+        printf("%d ", root->key);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
 int main()
 {
+    struct Node *root = NULL;
 
+    root = insert(root, 1);
+    root = insert(root, 2);
+    root = insert(root, 4);
+    root = insert(root, 5);
+    root = insert(root, 6);
+    root = insert(root, 3);
+    preOrder(root);
     return 0;
 }
