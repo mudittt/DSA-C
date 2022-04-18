@@ -88,6 +88,14 @@ struct Node *rightRotate(struct Node *y)
     return x;
 }
 
+/*
+             y         r            x
+           /  \      --->         /   \
+          x   T3                 T1    y
+         / \          <---            / \
+       T1  T2           l            T2  T3
+*/
+
 struct Node *leftRotate(struct Node *x)
 {
     struct Node *y = x->right;
